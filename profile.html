@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Diet Planner</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a href="home.html"><img src="logo.png" alt="Logo"></a>
+        </div>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="profile.html">My Profile</a></li>
+            <li><a href="preferences.html">Preferences</a></li>
+        </ul>
+    </nav>
+
+
+    <div class="container">
+        <h1>Your Profile</h1>
+        <div class="profile-box">
+            <p><strong>Name:</strong> <span id="displayName"></span></p>
+            <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+            <p><strong>Phone Number:</strong> <span id="displayPhone"></span></p>
+            <p><strong>Diet Type:</strong> <span id="displayDietType"></span></p>
+            <p><strong>Veg Days:</strong> <span id="displayVegDays"></span></p>
+            <p><strong>Festival Preference:</strong> <span id="displayFestivalPref"></span></p>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('displayName').textContent = localStorage.getItem('userName');
+        document.getElementById('displayEmail').textContent = localStorage.getItem('userEmail') || 'N/A';
+        document.getElementById('displayPhone').textContent = localStorage.getItem('userPhone') || 'N/A';
+        document.getElementById('displayDietType').textContent = localStorage.getItem('dietType') || 'Not set';
+        document.getElementById('displayVegDays').textContent = localStorage.getItem('vegDays') || 'Not set';
+        document.getElementById('displayFestivalPref').textContent = localStorage.getItem('festivalPref') || 'Not set';
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

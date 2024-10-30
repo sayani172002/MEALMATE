@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Diet Planner</h1>
+        <p>Redirecting you to the appropriate page...</p>
+    </div>
+
+    <script>
+        let userName = localStorage.getItem('userName');
+        let dietType = localStorage.getItem('dietType');
+
+        if (userName && dietType) {
+            window.location.href = 'home.html';
+        } else {
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

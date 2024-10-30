@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preferences - Diet Planner</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a href="home.html"><img src="logo.png" alt="Logo"></a>
+        </div>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="profile.html">My Profile</a></li>
+            <li><a href="preferences.html">Preferences</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Set Your Preferences</h1>
+        <form id="preferencesForm">
+            <label for="dietType">Diet Type:</label>
+            <select id="dietType">
+                <option value="Veg">Veg</option>
+                <option value="Non-Veg">Non-Veg</option>
+                <option value="Vegan">Vegan</option>
+                <option value="Flexitarian">Flexitarian</option>
+            </select>
+
+            <label for="vegDays">Veg Days (comma-separated):</label>
+            <input type="text" id="vegDays" placeholder="e.g., Monday, Wednesday">
+
+            <label for="festivalPref">Festival Preference:</label>
+            <input type="text" id="festivalPref" placeholder="Enter your preference">
+
+            <button type="submit">Update Preferences</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('dietType').value = localStorage.getItem('dietType') || 'Veg';
+        document.getElementById('vegDays').value = localStorage.getItem('vegDays') || '';
+        document.getElementById('festivalPref').value = localStorage.getItem('festivalPref') || '';
+
+        document.getElementById('preferencesForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            localStorage.setItem('dietType', document.getElementById('dietType').value);
+            localStorage.setItem('vegDays', document.getElementById('vegDays').value);
+            localStorage.setItem('festivalPref', document.getElementById('festivalPref').value);
+
+            alert('Preferences updated successfully!');
+            window.location.href = 'home.html'; 
+        });
+    </script>
+</body>
+</html>

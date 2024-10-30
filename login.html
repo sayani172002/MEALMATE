@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Diet Planner</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a href="home.html"><img src="logo.png" alt="Logo"></a>
+        </div>
+       
+    </nav>
+
+    <div class="container">
+        <h1>Login to Continue</h1>
+
+        <!-- Name input field -->
+        <div class="input-group">
+            <h3>Enter Your Name</h3>
+            <input type="text" id="userName" placeholder="Enter your name" required>
+        </div>
+
+        <!-- Google Email Login -->
+        <div class="input-group">
+            <h3>Login with Gmail</h3>
+            <input type="email" id="googleEmail" placeholder="Enter your Gmail" required>
+            <button onclick="googleLogin()">Login with Gmail</button>
+        </div>
+
+        <!-- Facebook Username Login -->
+        <div class="input-group">
+            <h3>Login with Facebook</h3>
+            <input type="text" id="facebookUsername" placeholder="Enter your Facebook username" required>
+            <button onclick="facebookLogin()">Login with Facebook</button>
+        </div>
+
+        <!-- Phone Number Login -->
+        <div class="input-group">
+            <h3>Login with Phone Number</h3>
+            <input type="tel" id="phoneNumber" placeholder="Enter your phone number" required>
+            <button onclick="phoneLogin()">Login with Phone Number</button>
+        </div>
+    </div>
+
+    <script>
+        function getUserName() {
+            let userName = document.getElementById('userName').value;
+            if (!userName) {
+                alert('Please enter your name.');
+                return null;
+            }
+            return userName;
+        }
+
+        function googleLogin() {
+            let userName = getUserName();
+            if (userName) {
+                let googleEmail = document.getElementById('googleEmail').value;
+                if (googleEmail) {
+                    localStorage.setItem('userName', userName);
+                    localStorage.setItem('userEmail', googleEmail);
+                    redirectToPreferences();
+                } else {
+                    alert("Please enter a valid Gmail.");
+                }
+            }
+        }
+
+        function facebookLogin() {
+            let userName = getUserName();
+            if (userName) {
+                let facebookUsername = document.getElementById('facebookUsername').value;
+                if (facebookUsername) {
+                    localStorage.setItem('userName', userName);
+                    localStorage.setItem('userFacebook', facebookUsername);
+                    redirectToPreferences();
+                } else {
+                    alert("Please enter a valid Facebook username.");
+                }
+            }
+        }
+
+        function phoneLogin() {
+            let userName = getUserName();
+            if (userName) {
+                let phoneNumber = document.getElementById('phoneNumber').value;
+                if (phoneNumber) {
+                    localStorage.setItem('userName', userName);
+                    localStorage.setItem('userPhone', phoneNumber);
+                    redirectToPreferences();
+                } else {
+                    alert("Please enter a valid phone number.");
+                }
+            }
+        }
+
+        function redirectToPreferences() {
+            // Check if preferences are already set in localStorage
+            if (!localStorage.getItem('preferencesSet')) {
+                window.location.href = 'preferences.html'; // Redirect to preferences page
+            } else {
+                window.location.href = 'home.html'; // Redirect to home page
+            }
+        }
+    </script>
+</body>
+</html>

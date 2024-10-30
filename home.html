@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="logo.png" type="image/png">
+<title>MEALMATE</title>
+
+    <link rel="stylesheet" href="style.css">
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .highlight {
+            display: inline-block;
+            background-color: #ffeb3b;
+            color: #333;
+            padding: 0.3em 0.6em;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .highlight-container {
+            background-color: #e0f7fa;
+            padding: 1em;
+            border-radius: 8px;
+            margin-top: 1em;
+        }
+        .diet-type {
+            background-color: #c8e6c9;
+            padding: 0.3em 0.5em;
+            border-radius: 5px;
+            margin-top: 1em;
+            font-weight: bold;
+            display: inline-block;
+        }
+        .meal-options button {
+            color: white;
+            padding: 6px 12px;
+            font-size: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 8px;
+            width: 100px;
+            transition: background-color 0.3s ease;
+        }
+		.meal-options .youtube-btn {
+            background-color: #B70D1B; 
+        }
+        .meal-options .zomato-btn {
+            background-color: #FF5722; 
+        }
+        .meal-options .blinkit-btn {
+            background-color: #F4D34E; 
+             
+        }
+        #recipeDetails {
+            display: none;
+            margin-top: 20px;
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .recipe-section {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .ingredients, .instructions {
+            flex: 1;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #ffffff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .ingredients h4, .instructions h4 {
+            color: #3f51b5;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .ingredients ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+		.blinkit-btn {
+    background-color: #F4D34E;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.blinkit-btn:hover {
+    background-color: #d45d0d; 
+    transform: scale(1.05); 
+}
+
+.blinkit-btn:focus {
+    outline: none; 
+    box-shadow: 0 0 5px #f57c20; 
+}
+		
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a href="home.html"><img src="logo.png" alt="Logo"></a>
+        </div>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="profile.html">My Profile</a></li>
+            <li><a href="preferences.html">Preferences</a></li>
+            <li><a href="#" id="logoutButton">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Welcome, <span id="userName"></span>!</h1>
+        <div id="dietTypeDisplay" class="diet-type"></div>
+
+        <div id="preferencesHighlights" class="highlight-container">
+            <div id="highlightContent"></div>
+			            <h2 class="highlight-title">Today's Preferences</h2>
+
+        </div>
+
+        <div class="meal-options">
+            <input type="text" id="foodSearch" placeholder="Search cravings...">
+            <button onclick="searchFood()">Search Recipe</button>
+            <button class="zomato-btn" onclick="openPreCooked()">Pre-Cooked (Zomato)</button>
+            <button class="blinkit-btn" onclick="openBlinkit()">Ingredients (Blinkit)</button>
+            <button class="youtube-btn" onclick="openRecipes()">Recipes (YouTube)</button>
+        </div>
+
+        <div id="recipeDetails">
+            <h3 id="recipeTitle"></h3>
+            <div class="recipe-section">
+                <div class="ingredients">
+                    <h4>Ingredients</h4>
+                    <ul id="ingredientList"></ul>
+                </div>
+                <div class="instructions">
+                    <h4>Instructions</h4>
+                    <p id="instructions"></p>
+                </div>
+            </div>
+            <button class="blinkit-btn" onclick="openBlinkit()">Ingredients (Blinkit)</button>
+
+        </div>
+    </div>
+<footer id="footer">
+		
+    <div class="footer-content">
+	<p>Connect with us:</p>
+        <div class="social-media">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+        </div>
+        <div class="footer-links">
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="faq.html">FAQ</a>
+        </div>
+        <div class="footer-copy">
+            &copy; 2024 MEALMATE. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+
+
+    <script>
+	document.getElementById('logoutButton').addEventListener('click', function() {
+        
+
+        // Redirect to the login page
+        window.location.href = 'login.html';
+    });
+
+        const userName = localStorage.getItem('userName') || "Guest";
+        const dietType = localStorage.getItem('dietType') || "Not specified";
+        const vegDays = localStorage.getItem('vegDays') || '';
+        const festivalPref = localStorage.getItem('festivalPref');
+
+        document.getElementById('userName').textContent = userName;
+        document.getElementById('dietTypeDisplay').textContent = `Your Diet Type: ${dietType}`;
+
+        const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const todayName = daysOfWeek[new Date().getDay()];
+        let highlightHTML = '';
+
+        if (vegDays.includes(todayName)) {
+            highlightHTML += `<div class="highlight-item">Today (${todayName}) is your <span class="highlight">Veg Day</span>.</div>`;
+        }
+
+        document.getElementById('highlightContent').innerHTML = highlightHTML ;
+
+
+        
+
+        document.getElementById('highlightContent').innerHTML = highlightHTML || '<p></p>';
+
+        async function searchFood() {
+            const query = document.getElementById('foodSearch').value.trim();
+            if (!query) {
+                alert("Please enter a food item.");
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
+                
+                if (!response.ok) {
+                    console.error(`HTTP Error: ${response.status} ${response.statusText}`);
+                    alert("Failed to fetch recipe data. Please try again later.");
+                    return;
+                }
+
+                const data = await response.json();
+
+                if (data && data.meals && data.meals.length > 0) {
+                    const recipe = data.meals[0];
+                    const ingredients = [];
+                    for (let i = 1; i <= 20; i++) {
+                        const ingredient = recipe[`strIngredient${i}`];
+                        if (ingredient) {
+                            ingredients.push(ingredient);
+                        }
+                    }
+                    const instructions = recipe.strInstructions || "Instructions not available.";
+                    displayRecipe(recipe.strMeal, ingredients, instructions);
+                } else {
+                    alert("No recipe found for this item.");
+                    document.getElementById('recipeDetails').style.display = 'none';
+                }
+            } catch (error) {
+                console.error("Error fetching recipe:", error);
+                alert("An unexpected error occurred while fetching the recipe.");
+            }
+        }
+
+        function displayRecipe(title, ingredients, instructions) {
+            document.getElementById('recipeTitle').textContent = title;
+            const ingredientList = document.getElementById('ingredientList');
+            ingredientList.innerHTML = "";
+
+            ingredients.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                ingredientList.appendChild(li);
+            });
+
+            document.getElementById('instructions').textContent = instructions;
+            document.getElementById('recipeDetails').style.display = 'block';
+        }
+
+        function openPreCooked() {
+            const food = document.getElementById('foodSearch').value.trim();
+            const zomatoUrl = `https://www.zomato.com/search?q=${encodeURIComponent(food)}`;
+            window.open(zomatoUrl, '_blank');
+        }
+
+         function openBlinkit() {
+            const blinkitUrl = `https://www.blinkit.com`;
+            window.open(blinkitUrl, '_blank');
+        }
+
+
+        function openRecipes() {
+            const food = document.getElementById('foodSearch').value.trim();
+            if (food) {
+                const youtubeUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent("how to make " + food)}`;
+                window.open(youtubeUrl, '_blank');
+            } else {
+                alert("Please enter a food item to search for a recipe.");
+            }
+        }
+		 
+    </script>
+</body>
+</html>
